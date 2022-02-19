@@ -25,15 +25,21 @@ describe('Address Book', () => {
 });
 
 describe('Async AddressBook', ()=> {
-    it('should retrieve inital contacts', ()=>{
+    beforeEach(function(done){
         // Arrange
         addressBook = new AddressBook();
-
+        
         //Act
-        addressBook.getInitialContacts();
+        addressBook.getInitialContacts(()=>{
+            done();
+        });
 
+    })
+    
+    it('should retrieve inital contacts', (done)=>{
         //Assert
         expect(addressBook.initialComplete).toBe(true);
+        done();
     })
 
 
